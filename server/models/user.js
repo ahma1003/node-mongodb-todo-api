@@ -1,0 +1,1 @@
+var mongooes = require('mongooes');
