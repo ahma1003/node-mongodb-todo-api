@@ -1,13 +1,16 @@
 var express = require('express');
 var bodyParser = require('body-parser');   //convert json to object and send it to the server
+var hbs = require('hbs');
 
 // local import
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
-//var {User} = require('./models/user');
 
 var app = express();
 const port = process.env.PORT || 3000;
+
+// to use the media sto
+app.use('/static', express.static('public'));
 
 // get bodydata sendt from the client
 app.use(bodyParser.json());
@@ -34,6 +37,16 @@ app.get('/todos', (req, res) => {
     })
 });
 
+
+//new style changes 
+app.get('/', (req,res) => {
+    res.render('home.hbs', {
+        pageTitle: "Home Page",
+        WelcomeMessage: "Welcome to my website"
+    });
+});
+
+// port listner
 app.listen(port, () => {
     console.log(`Started up af port ${port}`);
 }); 
