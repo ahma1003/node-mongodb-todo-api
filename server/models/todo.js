@@ -13,16 +13,16 @@ var Todo = mongoose.model('Todo', {
     }
 });
 
-// removed in the program !!
+// // create new object in mongodb
 // var newTodo = new Todo({
-//     //text: 'Cook dinner'
+//     text: 'drink coffe'
 // });
 
 // newTodo.save().then((doc) => {
-//     console.log('Saved todo! ', doc)
+//     console.log(JSON.stringify(doc, undefined, 2));
 // }, (e) => {
 //     console.log('Unable to save todo')
-// })
+// });
 
 
 module.exports = {Todo};   // export variable Todo med skemaet

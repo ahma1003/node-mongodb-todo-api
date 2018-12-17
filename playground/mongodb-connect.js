@@ -1,36 +1,26 @@
 // const MongoClient = require('mongodb').MongoClient;
 const {MongoClient, ObjectID} = require('mongodb');
 
-MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {  // db -> client
+MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {  //  
     if (err){
         return console.log('Unable to connect to MongoDB server');
     }
     console.log('Connected to MongoDB server');
-    //const db = client.db('TodoApp')
+    const db = client.db('TodoApp')
 
-    // db.collection('Todos').insertOne({ 
-    //     text: 'Something to do',
-    //     completed: false
-    // }, (err, result) => {
-    //     if (err) {
-    //         return console.log('Unable to insert todo', err);
-    //     }
+    // Create a new object to "Todos" collection
+    db.collection('Todos').insertOne({ 
+        text: 'kaffehuset',
+        completed: false
+    }, (err, result) => {
+        if (err) {
+            return console.log('Unable to insert todo', err);
+        }
+        //console.log(JSON.stringify(result.ops, undefined, 2));        // sucess code
+        // });
 
-    //     console.log(JSON.stringify(result.ops, undefined, 2));
-    // });
+        console.log(result.ops[0]._id.getTimestamp());         // _id.getTimestamp() to se when object is created
+    });
 
-    //  New dokuments added to mongoDB 
-    // db.collection('Users').insertOne({
-    //     name: 'Ahmad',
-    //     age: 29,
-    //     location:'Cph'
-    // }, (err, result) =>{
-    //     if (err) {
-    //         console.log('Unable to insert User', err);
-    //     }
-
-    //     console.log(result.ops[0]._id.getTimestamp());         // _id.getTimestamp() to se when users is created
-    // });
-
-    // client.close();
+    client.close();
 });
